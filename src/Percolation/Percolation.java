@@ -1,3 +1,5 @@
+package Percolation;
+
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
@@ -92,7 +94,7 @@ public class Percolation {
 //        int temp = 0;
 //        int size = 20;
 //        for (int i=0;i<time;i++) {
-//            Percolation percolation = new Percolation(size);
+//            Percolation.Percolation percolation = new Percolation.Percolation(size);
 //            while (!percolation.percolates()) {
 //                int p = StdRandom.uniform(size) + 1;
 //                int q = StdRandom.uniform(size) + 1;
