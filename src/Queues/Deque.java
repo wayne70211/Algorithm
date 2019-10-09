@@ -1,8 +1,6 @@
 package Queues;
 
-import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -27,7 +25,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     // is the deque empty?
     public boolean isEmpty(){
-        return first == null && last == null;
+        return first == null || last == null;
     }
 
     // return the number of items on the deque
@@ -44,6 +42,7 @@ public class Deque<Item> implements Iterable<Item> {
         first = new Node<>();
         first.item = item;
         first.next = oldFirst;
+        first.previous = null;
         if (oldFirst == null){
             last = first;
         } else {
@@ -78,7 +77,11 @@ public class Deque<Item> implements Iterable<Item> {
         Item item = first.item;
         first = first.next;
         n--;
-        if (isEmpty()) last = null;   // to avoid loitering
+        if (first == null) {
+            last = null;   // to avoid loitering
+        } else {
+            first.previous = null;
+        }
         return item;
     }
 
@@ -90,7 +93,11 @@ public class Deque<Item> implements Iterable<Item> {
         Item item = last.item;
         last = last.previous;
         n--;
-        if (isEmpty()) first = null;   // to avoid loitering
+        if (last == null) {
+            first = null;   // to avoid loitering
+        } else {
+            last.next = null;
+        }
         return item;
     }
 
@@ -99,7 +106,7 @@ public class Deque<Item> implements Iterable<Item> {
         return new ListIterator(first);
     }
 
-    private class ListIterator implements Iterator<Item>{
+    private class ListIterator implements Iterator<Item> {
         private Node<Item> current;
 
         public ListIterator(Node<Item> first) {
@@ -124,40 +131,33 @@ public class Deque<Item> implements Iterable<Item> {
 
     // unit testing (required)
     public static void main(String[] args){
-//        Deque<String> deque = new Deque<>();
-//        System.out.println("Deque First");
-//        while (!StdIn.isEmpty()) {
-//            String item = StdIn.readString();
-//            if (!item.equals("-"))
-//                deque.addFirst(item);
-//            else if (!deque.isEmpty())
-//                StdOut.print(deque.removeFirst() + " ");
-//        }
-//        System.out.println("Deque Last");
-//        while (!StdIn.isEmpty()) {
-//            String item = StdIn.readString();
-//            if (!item.equals("-"))
-//                deque.addFirst(item);
-//            else if (!deque.isEmpty())
-//                StdOut.print(deque.removeLast() + " ");
-//        }
-//        System.out.println("Deque First");
-//        while (!StdIn.isEmpty()) {
-//            String item = StdIn.readString();
-//            if (!item.equals("-"))
-//                deque.addLast(item);
-//            else if (!deque.isEmpty())
-//                StdOut.print(deque.removeFirst() + " ");
-//        }
-//        System.out.println("Deque First");
-//        while (!StdIn.isEmpty()) {
-//            String item = StdIn.readString();
-//            if (!item.equals("-"))
-//                deque.addLast(item);
-//            else if (!deque.isEmpty())
-//                StdOut.print(deque.removeLast() + " ");
-//        }
 
+//        Deque<Integer> deque = new Deque<Integer>();
+//        deque.addLast(1);
+//        for (int s : deque) {
+//            StdOut.print(s+ " ");
+//        }
+//        StdOut.println();
+//        deque.addFirst(2);
+//        for (int s : deque) {
+//            StdOut.print(s+ " ");
+//        }
+//        StdOut.println();
+//        deque.addFirst(3);
+//        for (int s : deque) {
+//            StdOut.print(s+ " ");
+//        }
+//        StdOut.println();
+//        deque.addLast(4);
+//        for (int s : deque) {
+//            StdOut.print(s+ " ");
+//        }
+//        StdOut.println();
+//        StdOut.println(deque.isEmpty());
+//        StdOut.println(deque.removeLast());
+//        for (int s : deque) {
+//            StdOut.print(s+ " ");
+//        }
 
     }
 
